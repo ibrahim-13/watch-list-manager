@@ -1,0 +1,244 @@
+<!--
+//    Copyright (C) 2017 MD. Ibrahim Khan
+//
+//    Project Name: 
+//    Author: MD. Ibrahim Khan
+//    Author's Email: ib.arshad777@gmail.com
+//
+//    Redistribution and use in source and binary forms, with or without modification,
+//    are permitted provided that the following conditions are met:
+//
+//    1. Redistributions of source code must retain the above copyright notice, this
+//       list of conditions and the following disclaimer.
+//
+//    2. Redistributions in binary form must reproduce the above copyright notice, this
+//       list of conditions and the following disclaimer in the documentation and/or
+//       other materials provided with the distribution.
+//
+//    3. Neither the name of the copyright holder nor the names of the contributors may
+//       be used to endorse or promote products derived from this software without
+//       specific prior written permission.
+//
+//    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+//    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+//    IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+//    INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING
+//    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+//    DATA, OR PROFITS; OR BUSINESS INTERRUPTIONS) HOWEVER CAUSED AND ON ANY THEORY OF
+//    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+//    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+//    OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AnchorPaneMain" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="watchlistmanager.controller.MainGUIController">
+   <children>
+      <MenuBar layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="650.0" AnchorPane.bottomAnchor="424.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemExit" text="Exit" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Navigation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemGoToHome" text="HOME" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemViewEntry" text="View Entries" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemInfoChart" text="Info Charts" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemAddCatagory" text="Add Catagory" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemAddEntry" text="Add Entry" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemEditCatagory" text="Edit/Delete Catagory" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemEditItem" text="Edit/Delete Entry" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Import/Export">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemImport" text="Import From File" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemExport" text="Export To File" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#clickedMenuItemAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+         <effect>
+            <DropShadow />
+         </effect>
+      </MenuBar>
+      <AnchorPane fx:id="AnchorPaneSecondary" focusTraversable="true" layoutY="26.0" prefHeight="396.0" prefWidth="650.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+         <children>
+            <AnchorPane fx:id="AnchorPaneViewer" focusTraversable="true" layoutX="10.0" layoutY="10.0" prefHeight="389.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Separator layoutX="199.0" orientation="VERTICAL" prefHeight="389.0" prefWidth="6.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="445.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="ViewerListEntrySelection" layoutX="212.0" layoutY="27.0" onMouseClicked="#clickedViewerListEntrySelection" prefHeight="316.0" prefWidth="201.0" />
+                  <Label layoutX="215.0" layoutY="358.0" text="Search" />
+                  <TextField fx:id="ViewerTextFieldSearch" layoutX="258.0" layoutY="354.0" onKeyReleased="#ViewerTextFieldSearchKeyTyped" prefHeight="25.0" prefWidth="157.0" />
+                  <Label layoutX="430.0" layoutY="76.0" text="Index" />
+                  <TextField fx:id="ViewerTextFieldIndex" alignment="TOP_LEFT" editable="false" layoutX="487.0" layoutY="72.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="299.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="72.0" />
+                  <Label layoutX="430.0" layoutY="111.0" text="Name" />
+                  <TextField fx:id="ViewerTextFieldName" alignment="TOP_LEFT" editable="false" layoutX="487.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="264.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="107.0" />
+                  <TextField fx:id="ViewerTextFieldInfo" alignment="TOP_LEFT" editable="false" layoutX="487.0" layoutY="142.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="229.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="142.0" />
+                  <TextField fx:id="ViewerTextFieldStatus" alignment="TOP_LEFT" editable="false" layoutX="487.0" layoutY="177.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="194.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="177.0" />
+                  <TextField fx:id="ViewerTextFieldEpisodes" alignment="TOP_LEFT" editable="false" layoutX="487.0" layoutY="212.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="212.0" />
+                  <TextField fx:id="ViewerTextFieldSeen" alignment="TOP_LEFT" editable="false" layoutX="487.0" layoutY="247.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="124.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="247.0" />
+                  <Label layoutX="430.0" layoutY="146.0" text="Info" />
+                  <Label layoutX="430.0" layoutY="181.0" text="Status" />
+                  <Label layoutX="430.0" layoutY="216.0" text="Episodes" />
+                  <Label layoutX="430.0" layoutY="251.0" text="Seen" />
+                  <Label layoutX="548.0" layoutY="343.0" text="Last Modified" />
+                  <TextField fx:id="ViewerTextFieldDateAdded" alignment="CENTER_RIGHT" editable="false" layoutX="487.0" layoutY="318.0" />
+                  <TextField fx:id="ViewerTextFieldDateEdited" alignment="CENTER_RIGHT" editable="false" layoutX="487.0" layoutY="360.0" />
+                  <Label layoutX="584.0" layoutY="301.0" text="Added" />
+                  <Label layoutX="487.0" layoutY="14.0" text="Details">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button defaultButton="true" layoutX="8.0" layoutY="354.0" mnemonicParsing="false" onAction="#clickedViewerRefresh" text="Refresh" />
+                  <Label layoutX="28.0" layoutY="6.0" text="Catagory" />
+                  <Label layoutX="244.0" layoutY="6.0" text="Entry Selection" />
+                  <TextField fx:id="ViewerTextFieldCurrentDate" alignment="CENTER_RIGHT" editable="false" layoutX="66.0" layoutY="354.0" prefHeight="25.0" prefWidth="133.0" promptText="Today's Date" />
+                  <ListView fx:id="ViewerListCatagory" layoutX="5.0" layoutY="27.0" onMouseClicked="#clickedViewerListCatagory" prefHeight="316.0" prefWidth="193.0" />
+                  <Separator layoutX="415.0" orientation="VERTICAL" prefHeight="389.0" prefWidth="6.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AnchorPaneAddCatagory" focusTraversable="true" prefHeight="389.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="238.0" layoutY="14.0" prefHeight="35.0" prefWidth="174.0" text="Add Catagory">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="49.0" text="Existing Catagories" />
+                  <ListView fx:id="AddCatListExisting" layoutX="7.0" layoutY="72.0" prefHeight="310.0" prefWidth="193.0" />
+                  <Label layoutX="246.0" layoutY="141.0" text="New Catagory Name" />
+                  <TextField fx:id="AddCatTextFieldName" layoutX="246.0" layoutY="166.0" />
+                  <Button cancelButton="true" defaultButton="true" layoutX="301.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickedAddCatCancel" text="Cancel" />
+                  <Button layoutX="369.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickedAddCatAdCat" text="Add Catagory" />
+                  <Separator layoutX="215.0" layoutY="50.0" orientation="VERTICAL" prefHeight="333.0" prefWidth="6.0" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="AnchorPaneEditCatagory" focusTraversable="true" layoutX="10.0" layoutY="10.0" prefHeight="389.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                  <Label layoutX="205.0" layoutY="14.0" prefHeight="35.0" prefWidth="245.0" text="Edit/Delete Catagory" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="49.0" text="Select Catagory" />
+                  <ListView fx:id="EditCatListSelectCatagory" layoutX="7.0" layoutY="72.0" onMouseClicked="#clickedEditCatListSelectCatagory" prefHeight="310.0" prefWidth="193.0" />
+                  <Label layoutX="246.0" layoutY="141.0" text="New Catagory Name" />
+                  <TextField fx:id="EditCatTextFieldName" layoutX="246.0" layoutY="166.0" />
+                  <CheckBox fx:id="EditCatCheckBoxDelete" layoutX="427.0" layoutY="170.0" mnemonicParsing="false" text="Delete Catagory" />
+                  <Button cancelButton="true" defaultButton="true" layoutX="301.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickedEditCatCancel" text="Cancel" />
+                  <Button layoutX="369.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickedEditCatApply" text="Apply" />
+                  <Separator layoutX="215.0" layoutY="50.0" orientation="VERTICAL" prefHeight="333.0" prefWidth="6.0" />
+               </children></AnchorPane>
+            <AnchorPane fx:id="AnchorPaneAddItem" focusTraversable="true" layoutX="10.0" layoutY="10.0" prefHeight="389.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                  <Separator layoutX="204.0" layoutY="56.0" orientation="VERTICAL" prefHeight="333.0" prefWidth="6.0" />
+                  <ListView fx:id="AddEntryListCatagory" layoutX="5.0" layoutY="83.0" onMouseClicked="#clickedAddEntryListCatagory" prefHeight="300.0" prefWidth="193.0" />
+                  <ListView fx:id="AddEntryListEntry" layoutX="212.0" layoutY="83.0" prefHeight="300.0" prefWidth="201.0" />
+                  <Separator layoutX="418.0" layoutY="56.0" orientation="VERTICAL" prefHeight="333.0" prefWidth="6.0" visible="false" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="56.0" />
+                  <Label layoutX="424.0" layoutY="153.0" text="Name" />
+                  <TextField fx:id="AddEntryTextViewName" layoutX="481.0" layoutY="149.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="222.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="149.0" />
+                  <TextField fx:id="AddEntryTextViewInfo" layoutX="481.0" layoutY="184.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="187.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="184.0" />
+                  <TextField fx:id="AddEntryTextViewStatus" layoutX="481.0" layoutY="219.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="219.0" />
+                  <TextField fx:id="AddEntryTextViewEpisodes" layoutX="481.0" layoutY="254.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="254.0" />
+                  <TextField fx:id="AddEntryTextViewSeen" layoutX="481.0" layoutY="289.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="289.0" />
+                  <Label layoutX="424.0" layoutY="188.0" text="Info" />
+                  <Label layoutX="424.0" layoutY="223.0" text="Status" />
+                  <Label layoutX="424.0" layoutY="258.0" text="Episodes" />
+                  <Label layoutX="424.0" layoutY="293.0" text="Seen" />
+                  <Label layoutX="481.0" layoutY="56.0" text="Details">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="56.0" text="Select Catagory" />
+                  <Label layoutX="234.0" layoutY="56.0" text="Existing Entry" />
+                  <Label layoutX="263.0" layoutY="14.0" prefHeight="35.0" prefWidth="125.0" text="Add Entry" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Label>
+                  <Button cancelButton="true" layoutX="499.0" layoutY="350.0" mnemonicParsing="false" onAction="#clickedAddEntryCancel" text="Cancel" />
+                  <Button defaultButton="true" layoutX="561.0" layoutY="350.0" mnemonicParsing="false" onAction="#clickedAddEntryAddEntry" text="Add Entry" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="AnchorPaneEditItem" focusTraversable="true" layoutX="10.0" layoutY="10.0" prefHeight="389.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                  <Separator layoutX="198.0" layoutY="55.0" orientation="VERTICAL" prefHeight="333.0" prefWidth="6.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="446.0" AnchorPane.topAnchor="55.0" />
+                  <ListView fx:id="EditEntryListCatagory" layoutX="5.0" layoutY="83.0" onMouseClicked="#clickedEditEntryListCatagory" prefHeight="300.0" prefWidth="193.0" />
+                  <ListView fx:id="EditEntryListEntry" layoutX="212.0" layoutY="83.0" onMouseClicked="#clickedEditEntryListEntry" prefHeight="300.0" prefWidth="201.0" />
+                  <Label layoutX="429.0" layoutY="116.0" text="Name" />
+                  <TextField fx:id="EditEntryTextFieldName" layoutX="486.0" layoutY="112.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="259.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="112.0" />
+                  <TextField fx:id="EditEntryTextFieldInfo" layoutX="486.0" layoutY="147.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="224.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="147.0" />
+                  <TextField fx:id="EditEntryTextFieldStatus" layoutX="486.0" layoutY="182.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="189.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="182.0" />
+                  <TextField fx:id="EditEntryTextFieldEpisodes" layoutX="486.0" layoutY="217.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="217.0" />
+                  <TextField fx:id="EditEntryTextFieldSeen" layoutX="486.0" layoutY="252.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="486.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="252.0" />
+                  <CheckBox fx:id="EditEntryCheckBoxDelete" layoutX="500.0" layoutY="304.0" mnemonicParsing="false" text="Delete Entry" />
+                  <Label layoutX="432.0" layoutY="151.0" text="Info" AnchorPane.leftAnchor="429.0" />
+                  <Label layoutX="429.0" layoutY="186.0" text="Status" AnchorPane.leftAnchor="429.0" />
+                  <Label layoutX="429.0" layoutY="221.0" text="Episodes" />
+                  <Label layoutX="429.0" layoutY="256.0" text="Seen" />
+                  <Label layoutX="481.0" layoutY="56.0" text="Details">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="56.0" text="Select Catagory" />
+                  <Label layoutX="234.0" layoutY="56.0" text="Existing Entry" />
+                  <Label layoutX="221.0" layoutY="14.0" prefHeight="35.0" prefWidth="208.0" text="Edit/Delete Entry" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Label>
+                  <Button cancelButton="true" layoutX="517.0" layoutY="350.0" mnemonicParsing="false" onAction="#clickedEditEntryCancel" text="Cancel" />
+                  <Button defaultButton="true" layoutX="579.0" layoutY="350.0" mnemonicParsing="false" onAction="#clickedEditEntryApply" text="Apply" />
+                  <Separator layoutX="413.0" layoutY="55.0" orientation="VERTICAL" prefHeight="333.0" prefWidth="6.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="231.0" AnchorPane.topAnchor="55.0" />
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <Separator layoutY="426.0" prefHeight="3.0" prefWidth="650.0" />
+      <Label fx:id="LabelStatus" layoutY="426.0" prefHeight="17.0" prefWidth="650.0" text="Status" />
+      <AnchorPane fx:id="AnchorPaneCharts" layoutX="10.0" layoutY="43.0" prefHeight="389.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+         <children>
+            <PieChart fx:id="ChartPieChart" layoutX="150.0" prefHeight="389.0" prefWidth="500.0" title="Entry Chart" />
+            <CheckBox layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#clickedChartShowExtra" text="Show Extra Info" />
+            <Button layoutX="40.0" layoutY="315.0" mnemonicParsing="false" onAction="#clickedChartGoBack" text="Go Back" />
+            <Separator layoutX="147.0" orientation="VERTICAL" prefHeight="389.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
